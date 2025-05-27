@@ -1,0 +1,159 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+input AnswerInput {
+  answerMarked: String!
+  correctOption: String!
+  questionId: ID!
+}
+
+type AnswerType {
+  answerMarked: String!
+  correctOption: String!
+  questionId: ID!
+}
+
+type AuthResponse {
+  access_token: String!
+  user: UserType!
+}
+
+type CategoryType {
+  createdAt: DateTime!
+  description: String
+  id: ID!
+  name: String!
+  updatedAt: DateTime!
+}
+
+type CategoryWithQuestionCountType {
+  createdAt: DateTime!
+  description: String
+  id: ID!
+  name: String!
+  questionsCount: Int!
+  updatedAt: DateTime!
+}
+
+type CategoryWithQuestionsType {
+  createdAt: DateTime!
+  description: String
+  id: ID!
+  name: String!
+  questions: [QuestionType!]!
+  updatedAt: DateTime!
+}
+
+input CreateCategoryInput {
+  description: String
+  name: String!
+}
+
+input CreateQuestionInput {
+  categories: [ID!]!
+  content: String!
+  correctOption: String!
+  options: [String!]!
+}
+
+input CreateUserInput {
+  email: String!
+  name: String!
+  password: String!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type ImportResult {
+  errors: [String!]!
+  success: Float!
+}
+
+input LoginInput {
+  email: String!
+  password: String!
+}
+
+type Mutation {
+  createCategory(createCategoryInput: CreateCategoryInput!): CategoryType!
+  createQuestion(createQuestionInput: CreateQuestionInput!): QuestionType!
+  createUser(createUserInput: CreateUserInput!): UserType!
+  csvUpload(file: Upload!): ImportResult!
+  login(loginInput: LoginInput!): AuthResponse!
+  removeCategory(id: ID!): CategoryType!
+  removeQuestion(id: ID!): QuestionType!
+  removeUser(id: ID!): UserType!
+  submitAnswer(input: SubmitAnswerInput!, userId: ID!): UserType!
+  updateCategory(id: ID!, updateCategoryInput: UpdateCategoryInput!): CategoryType!
+  updateQuestion(id: ID!, updateQuestionInput: UpdateQuestionInput!): QuestionType!
+  updateUser(id: ID!, updateUserInput: UpdateUserInput!): UserType!
+}
+
+type Query {
+  categories: [CategoryType!]!
+  categoriesWithQuestionCount: [CategoryWithQuestionCountType!]!
+  categoriesWithQuestions: [CategoryWithQuestionsType!]!
+  category(id: ID!): CategoryType!
+  question(id: ID!): QuestionType!
+  questions: [QuestionType!]!
+  questionsByCategory(category: String!): [QuestionType!]!
+  user(email: String!): UserType!
+  userAnswerByQuestion(questionId: ID!, timezone: String!, userId: ID!): UserAnswerWithLocalTime!
+  users: [UserType!]!
+}
+
+type QuestionType {
+  categories: [ID!]!
+  content: String!
+  correctOption: String!
+  createdAt: DateTime!
+  id: ID!
+  options: [String!]!
+  updatedAt: DateTime!
+}
+
+input SubmitAnswerInput {
+  answerMarked: String!
+  questionId: ID!
+}
+
+input UpdateCategoryInput {
+  description: String
+  name: String
+}
+
+input UpdateQuestionInput {
+  categories: [ID!]
+  content: String
+  correctOption: String
+  options: [String!]
+}
+
+input UpdateUserInput {
+  answers: [AnswerInput!]
+  email: String
+  name: String
+  password: String
+}
+
+"""The `Upload` scalar type represents a file upload."""
+scalar Upload
+
+type UserAnswerWithLocalTime {
+  answerMarked: String!
+  correctOption: String!
+  questionId: ID!
+  submittedAtLocal: String!
+  submittedAtUTC: DateTime!
+}
+
+type UserType {
+  answers: [AnswerType!]
+  email: String!
+  id: ID!
+  name: String!
+}
