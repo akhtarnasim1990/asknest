@@ -118,7 +118,7 @@ uploads/
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/ask-nest.git
+git clone https://github.com/akhtarnasim1990/asknest.git
 cd ask-nest
 ```
 
@@ -187,12 +187,6 @@ content,options,correctOption,categories
 3. Commit your changes (`git commit -am 'Add new feature'`)
 4. Push to the branch (`git push origin feature/your-feature`)
 5. Create a new Pull Request
-
----
-
-## License
-
-MIT
 
 ---
 
